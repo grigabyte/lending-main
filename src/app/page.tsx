@@ -319,11 +319,17 @@ export default function Home() {
                     <p className="cta-text">
                         Напишите мне в Telegram. Обсудим ваши задачи и найдём решение за 30 минут.
                     </p>
-                    <a href={siteConfig.telegram} target="_blank" rel="noreferrer" className="cta-button cta-primary cta-large">
-                        <MessageCircle size={22} />
-                        <span>НАПИСАТЬ В TELEGRAM</span>
-                        <ArrowRight size={20} />
-                    </a>
+                    <div className="cta-actions">
+                        <a href={siteConfig.telegram} target="_blank" rel="noreferrer" className="cta-button cta-primary cta-large">
+                            <MessageCircle size={22} />
+                            <span>НАПИСАТЬ В TELEGRAM</span>
+                            <ArrowRight size={20} />
+                        </a>
+                        <a href={siteConfig.boosty} target="_blank" rel="noreferrer" className="cta-button cta-secondary cta-large">
+                            <Zap size={18} />
+                            <span>BOOSTY</span>
+                        </a>
+                    </div>
                     <p className="cta-guarantee">Консультация бесплатная. Без обязательств.</p>
                 </div>
             </section>
