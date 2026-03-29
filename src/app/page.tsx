@@ -4,11 +4,11 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import GlitchText from '@/components/GlitchText';
 import {
-    Bot, Cpu, Layers, MessageCircle, Clock, TrendingUp, 
-    Shield, ArrowRight, Zap, CheckCircle2, AlertCircle, 
-    Workflow, Users, Sparkles, Target, Quote
+    Bot, Cpu, Layers, MessageCircle, Clock,
+    Shield, ArrowRight, Zap, CheckCircle2, AlertCircle,
+    Workflow, Users, Sparkles, Target
 } from 'lucide-react';
-import { testimonials } from '@/data/content';
+import { workScenarios, siteConfig } from '@/data/content';
 
 const fadeInUp = {
     initial: { opacity: 0, y: 30 },
@@ -128,12 +128,18 @@ export default function Home() {
                     </p>
 
                     <div className="hero-cta-group">
-                        <a href="https://t.me/awake_g" target="_blank" className="cta-button cta-primary">
-                            <MessageCircle size={20} />
-                            <span>БЕСПЛАТНАЯ КОНСУЛЬТАЦИЯ</span>
-                            <ArrowRight size={18} />
-                        </a>
-                        <p className="cta-subtext">Отвечу в течение часа</p>
+                        <div className="cta-actions">
+                            <a href={siteConfig.telegram} target="_blank" rel="noreferrer" className="cta-button cta-primary">
+                                <MessageCircle size={20} />
+                                <span>НАПИСАТЬ В TELEGRAM</span>
+                                <ArrowRight size={18} />
+                            </a>
+                            <a href={siteConfig.boosty} target="_blank" rel="noreferrer" className="cta-button cta-secondary">
+                                <Zap size={18} />
+                                <span>BOOSTY</span>
+                            </a>
+                        </div>
+                        <p className="cta-subtext">Telegram для связи, Boosty для материалов и обновлений.</p>
                     </div>
                 </motion.div>
 
@@ -269,11 +275,11 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Testimonials */}
+            {/* Work Scenarios */}
             <section className="section-spacer">
                 <div className="text-center mb-16">
-                    <span className="label-pixel">ОТЗЫВЫ</span>
-                    <h2 className="section-title">ЧТО ГОВОРЯТ КЛИЕНТЫ</h2>
+                    <span className="label-pixel">ГДЕ Я ПОЛЕЗЕН</span>
+                    <h2 className="section-title">РАБОЧИЕ СЦЕНАРИИ</h2>
                 </div>
 
                 <motion.div 
@@ -283,7 +289,7 @@ export default function Home() {
                     whileInView="animate"
                     viewport={{ once: true }}
                 >
-                    {testimonials.map((item, idx) => (
+                    {workScenarios.map((item, idx) => (
                         <motion.div 
                             key={idx} 
                             className="glass-panel testimonial-card"
@@ -291,14 +297,13 @@ export default function Home() {
                             whileHover={{ y: -5, borderColor: 'rgba(255, 62, 62, 0.4)' }}
                             transition={{ duration: 0.2 }}
                         >
-                            <div className="testimonial-quote">
-                                <Quote size={24} />
-                            </div>
+                            <h3 className="testimonial-title">{item.title}</h3>
                             <p className="testimonial-text">{item.text}</p>
-                            <div className="testimonial-author">
-                                <span className="testimonial-name">{item.name}</span>
-                                <span className="testimonial-role">{item.role}</span>
-                            </div>
+                            <ul className="testimonial-points">
+                                {item.points.map((point) => (
+                                    <li key={point}>{point}</li>
+                                ))}
+                            </ul>
                         </motion.div>
                     ))}
                 </motion.div>
@@ -314,7 +319,7 @@ export default function Home() {
                     <p className="cta-text">
                         Напишите мне в Telegram. Обсудим ваши задачи и найдём решение за 30 минут.
                     </p>
-                    <a href="https://t.me/awake_g" target="_blank" className="cta-button cta-primary cta-large">
+                    <a href={siteConfig.telegram} target="_blank" rel="noreferrer" className="cta-button cta-primary cta-large">
                         <MessageCircle size={22} />
                         <span>НАПИСАТЬ В TELEGRAM</span>
                         <ArrowRight size={20} />
@@ -327,6 +332,11 @@ export default function Home() {
             <footer className="site-footer">
                 <div className="footer-brand">NEUROCOOLA</div>
                 <div className="footer-copy">ИИ-автоматизация для бизнеса</div>
+                <div className="footer-links">
+                    <a href={siteConfig.telegram} target="_blank" rel="noreferrer">Telegram</a>
+                    <span>/</span>
+                    <a href={siteConfig.boosty} target="_blank" rel="noreferrer">Boosty</a>
+                </div>
             </footer>
         </main>
     );

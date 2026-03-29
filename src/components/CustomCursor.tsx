@@ -1,17 +1,20 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useSyncExternalStore } from 'react';
 import { motion, useSpring } from 'framer-motion';
 
 const CustomCursor = () => {
-    const [isClient, setIsClient] = useState(false);
+    const isClient = useSyncExternalStore(
+        () => () => undefined,
+        () => true,
+        () => false
+    );
     const [isHovering, setIsHovering] = useState(false);
 
     const mouseX = useSpring(0, { stiffness: 800, damping: 35 });
     const mouseY = useSpring(0, { stiffness: 800, damping: 35 });
 
     useEffect(() => {
-        setIsClient(true);
         const handleMouseMove = (e: MouseEvent) => {
             mouseX.set(e.clientX);
             mouseY.set(e.clientY);
